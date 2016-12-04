@@ -9,18 +9,18 @@ const options = {
   path: '/resource/66wh-az4r.json'
 };
 
-const callback = function(response) {
-  let str = '';
+const callback = response => {
+  let str = ''
 
-  response.on('data', function (chunk) {
-    str += chunk;
-  });
+  response.on('data', chunk => {
+    str += chunk
+  })
 
   response.on('end', function () {
     const data = JSON.parse(str)
     const list = getList(data)
     list.forEach(department => console.log(department, calc(data, department)))
-  });
+  })
 }
 
-http.request(options, callback).end();
+http.request(options, callback).end()
